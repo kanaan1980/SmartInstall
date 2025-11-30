@@ -17,7 +17,7 @@ class AppConfig:
     """إعدادات التطبيق الأساسية"""
     
     APP_NAME = "SmartInstall"
-    APP_VERSION = "1.0.0"
+    APP_VERSION = "1.0.1"
     APP_DESCRIPTION = "نظام إدارة مبيعات الأجهزة الكهربائية بالتقسيط"
     
     # اللغة والتوطين
