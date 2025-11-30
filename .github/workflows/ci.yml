@@ -1,0 +1,32 @@
+name: CI - Smoke Tests
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  smoke-tests:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.10, 3.11]
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Install minimal runtime deps
+        run: |
+          python -m pip install --upgrade pip
+          # We avoid installing the full requirements to keep the CI fast for smoke tests
+
+      - name: Run smoke tests
+        run: |
+          python tests/run_smoke.py
